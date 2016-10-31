@@ -13,7 +13,4 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/search', [
-    'as' => 'api.search',
-    'uses' => 'Api\SearchController@search'
-]);
+Route::get('/search', 'Api\SearchController@search')->name('api.search');

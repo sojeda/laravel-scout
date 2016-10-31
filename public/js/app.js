@@ -19,7 +19,7 @@ new Vue({
 	        this.loading = true;
 
 	        // Making a get request to our API and passing the query to it.
-	        this.$http.get('/api/search?q=' + this.query).then((response) => {
+	        this.$http.get('/api/search?text=' + this.query).then((response) => {
 	            // If there was an error set the error message, if not fill the posts array.
 	            response.body.error ? this.error = response.body.error : this.posts = response.body;
 	            // The request is finished, change the loading to false again.

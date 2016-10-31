@@ -25,7 +25,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 $factory->define(App\Post::class, function (Faker\Generator $faker) {
     return [
         'title' => $faker->sentence(),
-        'image' => 'http://loremflickr.com/400/300?random='.rand(1, 100),
+        'image' => $faker->imageUrl($width = 400, $height = 300),
         'description' => $faker->paragraph(10)
     ];
 });

@@ -10,29 +10,29 @@ use App\Http\Controllers\Controller;
 class SearchController extends Controller
 {
     /**
-     * Search the products table.
+     * Busqueda en la tabla post.
      *
      * @param  Request $request
      * @return mixed
      */
-    public function search(Request $request)
-    {
-        // First we define the error message we are going to show if no keywords
-        // existed or if no results found.
-        $error = ['error' => 'No results found, please try with different keywords.'];
+public function search(Request $request)
+{
+    // En primer lugar definimos el mensaje de error que vamos a mostrar 
+    // si no existieran palabras clave o si no hay resultados.
+    $error = ['error' => 'Sin resultados, ingrese otros campos para la búsqueda.'];
 
-        // Making sure the user entered a keyword.
-        if($request->has('q')) {
+    // Si el usuario hizo una peticion e ingreso texto
+    if($request->has('text')) {
 
-            // Using the Laravel Scout syntax to search the products table.
-            $posts = Post::search($request->get('q'))->get();
+        // Usando Laravel Scout para buscar en la tabla post.
+        $posts = Post::search($request->get('text'))->get();
 
-            // If there are results return them, if none, return the error message.
-            return $posts->count() ? $posts : $error;
+        // Si hay resultados se devuelven, sino va a mostrar el mensaje de error
+        return $posts->count() ? $posts : $error;
 
-        }
-
-        // Return the error message if no keywords existed
-        return $error;
     }
+    
+    // Retorna un mensaje de error si no existe
+    return $error;
+}
 }
